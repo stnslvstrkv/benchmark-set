@@ -80,11 +80,6 @@ int main(int argc, char **argv)
          if(_strnicmp(argv[i],"-test:",6)==0)
            {
             test_num=atoi(argv[i]+6);
-            //---
-            FILE *out;
-            fopen_s(&out,"TestOpenBenchmarks.txt","at");
-            _fprintf_p(out,"%s -- %d\n",argv[i],test_num);
-            fclose(out);
             continue;
            }
         }
@@ -94,7 +89,10 @@ int main(int argc, char **argv)
      {
       INT64  result_ackerman;
       UINT64 time_ackermann=TestAckermann(result_ackerman);
-      printf("   Ackermann:  %I64u ms, %I64d\n",time_ackermann,result_ackerman);
+      if(test_num==1)
+         printf("Elapsed %I64u ms\n",time_ackermann);
+      else
+         printf("   Ackermann:  %I64u ms, %I64d\n",time_ackermann,result_ackerman);
       BenchOutput("TestAckermann",time_ackermann,&result_ackerman);
      }
 //--- 2. Arrays
@@ -102,7 +100,10 @@ int main(int argc, char **argv)
      {
       INT64  result_arrays;
       UINT64 time_arrays=TestArrays(result_arrays);
-      printf("      Arrays:  %I64u ms, %I64d\n",time_arrays,result_arrays);
+      if(test_num==2)
+         printf("Elapsed %I64u ms\n",time_arrays);
+      else
+         printf("      Arrays:  %I64u ms, %I64d\n",time_arrays,result_arrays);
       BenchOutput("TestArrays",time_arrays,&result_arrays);
      }
 //--- 3. Bubble sort
@@ -111,7 +112,10 @@ int main(int argc, char **argv)
       int    size=_countof(ExtBubbleArray);
       UINT64 time_bubble=TestBubbleSort(ExtBubbleArray,0,size-1);
       INT64  result_bubble=ExtBubbleArray[size-1];
-      printf(" Bubble Sort:  %I64u ms, %I64d\n",time_bubble,result_bubble);
+      if(test_num==3)
+         printf("Elapsed %I64u ms\n",time_bubble);
+      else
+         printf(" Bubble Sort:  %I64u ms, %I64d\n",time_bubble,result_bubble);
       BenchOutput("TestBubblesort",time_bubble,&result_bubble);
      }
 //--- 4. Call
@@ -119,7 +123,10 @@ int main(int argc, char **argv)
      {
       INT64  result_call;
       UINT64 time_call=TestCall(result_call);
-      printf("        Call:  %I64u ms, %I64d\n",time_call,result_call);
+      if(test_num==4)
+         printf("Elapsed %I64u ms\n",time_call);
+      else
+         printf("        Call:  %I64u ms, %I64d\n",time_call,result_call);
       BenchOutput("TestCall",time_call,&result_call);
      }
 //--- 5. Fibo
@@ -127,7 +134,10 @@ int main(int argc, char **argv)
      {
       INT64  result_fibo;
       UINT64 time_fibo=TestFibo(result_fibo);
-      printf("        Fibo:  %I64u ms, %I64d\n",time_fibo,result_fibo);
+      if(test_num==5)
+         printf("Elapsed %I64u ms\n",time_fibo);
+      else
+         printf("        Fibo:  %I64u ms, %I64d\n",time_fibo,result_fibo);
       BenchOutput("TestFibo",time_fibo,&result_fibo);
      }
 //--- 6. Matrix
@@ -135,7 +145,10 @@ int main(int argc, char **argv)
      {
       INT64  result_matrix;
       UINT64 time_matrix=TestMatrix(result_matrix);
-      printf("      Matrix:  %I64u ms, %I64d\n",time_matrix,result_matrix);
+      if(test_num==1)
+         printf("Elapsed %I64u ms\n",time_matrix);
+      else
+         printf("      Matrix:  %I64u ms, %I64d\n",time_matrix,result_matrix);
       BenchOutput("TestMatrix",time_matrix,&result_matrix);
      }
 //--- 7. Moments
@@ -143,7 +156,10 @@ int main(int argc, char **argv)
      {
       INT64  result_moments;
       UINT64 time_moments=TestMoments(result_moments);
-      printf("     Moments:  %I64u ms, %I64d\n",time_moments,result_moments);
+      if(test_num==1)
+         printf("Elapsed %I64u ms\n",time_moments);
+      else
+         printf("     Moments:  %I64u ms, %I64d\n",time_moments,result_moments);
       BenchOutput("TestMoments",time_moments,&result_moments);
      }
 //--- 8. Nested Loops
@@ -151,7 +167,10 @@ int main(int argc, char **argv)
      {
       INT64  result_nested_loops;
       UINT64 time_nested_loops=TestNestedLoop(result_nested_loops);
-      printf("Nested Loops:  %I64u ms, %I64d\n",time_nested_loops,result_nested_loops);
+      if(test_num==8)
+         printf("Elapsed %I64u ms\n",time_nested_loops);
+      else
+         printf("Nested Loops:  %I64u ms, %I64d\n",time_nested_loops,result_nested_loops);
       BenchOutput("TestNestedLoops",time_nested_loops,&result_nested_loops);
      }
 //--- 9. PI
@@ -159,7 +178,10 @@ int main(int argc, char **argv)
      {
       INT64  result_pi;
       UINT64 time_pi=TestPiDigits(result_pi);
-      printf("   Pi Digits:  %I64u ms, %I64d\n",time_pi,result_pi);
+      if(test_num==9)
+         printf("Elapsed %I64u ms\n",time_pi);
+      else
+         printf("   Pi Digits:  %I64u ms, %I64d\n",time_pi,result_pi);
       BenchOutput("TestPiDigits",time_pi,&result_pi);
      }
 //--- 10. Random
@@ -167,7 +189,10 @@ int main(int argc, char **argv)
      {
       INT64  result_random;
       UINT64 time_random=TestRandom(result_random);
-      printf("      Random:  %I64u ms, %I64d\n",time_random,result_random);
+      if(test_num==10)
+         printf("Elapsed %I64u ms\n",time_random);
+      else
+         printf("      Random:  %I64u ms, %I64d\n",time_random,result_random);
       BenchOutput("TestRandom",time_random,&result_random);
      }
 //--- 11. Sieve
@@ -175,7 +200,10 @@ int main(int argc, char **argv)
      {
       INT64  result_sieve;
       UINT64 time_sieve=TestSieve(result_sieve);
-      printf("       Sieve:  %I64u ms, %I64d\n",time_sieve,result_sieve);
+      if(test_num==11)
+         printf("Elapsed %I64u ms\n",time_sieve);
+      else
+         printf("       Sieve:  %I64u ms, %I64d\n",time_sieve,result_sieve);
       BenchOutput("TestSieve",time_sieve,&result_sieve);
      }
 //--- 12. Math
@@ -184,7 +212,10 @@ int main(int argc, char **argv)
       INT64  result_int=0;
       double result_double=0.0;
       UINT64 time_math=TestMath(result_int,result_double);
-      printf(" Simple Math:  %I64u ms, %I64d %.0f\n",time_math,result_int,result_double);
+      if(test_num==12)
+         printf("Elapsed %I64u ms\n",time_math);
+      else
+         printf(" Simple Math:  %I64u ms, %I64d %.0f\n",time_math,result_int,result_double);
       BenchOutput("TestMath",time_math,&result_int);
      }
 //--- 13. String
@@ -192,7 +223,10 @@ int main(int argc, char **argv)
      {
       std::string str;
       UINT64 time_string=TestString(str);
-      printf("      String:  %I64u ms, %d\n",time_string,(int)str.length());
+      if(test_num==13)
+         printf("Elapsed %I64u ms\n",time_string);
+      else
+         printf("      String:  %I64u ms, %d\n",time_string,(int)str.length());
       BenchOutput("TestString",time_string,NULL);
      }
 //--- 14. Str Prep
@@ -200,7 +234,10 @@ int main(int argc, char **argv)
      {
       INT64  result_str_prep;
       UINT64 time_str_prep=TestStrPrep(result_str_prep);
-      printf("    Str Prep:  %I64u ms, %I64d\n",time_str_prep,result_str_prep);
+      if(test_num==14)
+         printf("Elapsed %I64u ms\n",time_str_prep);
+      else
+         printf("    Str Prep:  %I64u ms, %I64d\n",time_str_prep,result_str_prep);
       BenchOutput("TestStringPrep",time_str_prep,&result_str_prep);
      }
 //--- 15. Str Rev
@@ -208,7 +245,10 @@ int main(int argc, char **argv)
      {
       INT64  result_str_rev;
       UINT64 time_str_rev=TestStrRev(result_str_rev);
-      printf("     Str Rev:  %I64u ms, %I64d\n",time_str_rev,result_str_rev);
+      if(test_num==15)
+         printf("Elapsed %I64u ms\n",time_str_rev);
+      else
+         printf("     Str Rev:  %I64u ms, %I64d\n",time_str_rev,result_str_rev);
       BenchOutput("TestStringRev",time_str_rev,NULL);
      }
 //--- 16. Str Sum
@@ -216,7 +256,10 @@ int main(int argc, char **argv)
      {
       INT64  result_sum=0;
       UINT64 time_str_sum=TestStrSum(result_sum);
-      printf("     Str Sum:  %I64u ms, %I64d\n",time_str_sum,result_sum);
+      if(test_num==16)
+         printf("Elapsed %I64u ms\n",time_str_sum);
+      else
+         printf("     Str Sum:  %I64u ms, %I64d\n",time_str_sum,result_sum);
       BenchOutput("TestStringSum",time_str_sum,&result_sum);
      }
 //---

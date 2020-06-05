@@ -66,6 +66,8 @@ void BenchOutput(LPCSTR bench_name,const UINT64 elapsed,INT64 *presult)
 //+------------------------------------------------------------------+
 int main(int argc, char **argv)
   {
+   int test_num=0;
+//---
    if(argc>1)
      {
       for(int i=1; i<argc; i++)
@@ -73,92 +75,150 @@ int main(int argc, char **argv)
          if(_stricmp(argv[i],"-no_common_folder")==0)
            {
             ExtCommonFolder=false;
-            break;
+            continue;
+           }
+         if(_strnicmp(argv[i],"-test:",6)==0)
+           {
+            test_num=atoi(argv[i]+6);
+            //---
+            FILE *out;
+            fopen_s(&out,"TestOpenBenchmarks.txt","at");
+            _fprintf_p(out,"%s -- %d\n",argv[i],test_num);
+            fclose(out);
+            continue;
            }
         }
      }
 //--- 1. Ackermann
-   INT64  result_ackerman;
-   UINT64 time_ackermann=TestAckermann(result_ackerman);
-   printf("   Ackermann:  %I64u ms, %I64d\n",time_ackermann,result_ackerman);
-   BenchOutput("TestAckermann",time_ackermann,&result_ackerman);
+   if(test_num<=0 || test_num>16 || test_num==1)
+     {
+      INT64  result_ackerman;
+      UINT64 time_ackermann=TestAckermann(result_ackerman);
+      printf("   Ackermann:  %I64u ms, %I64d\n",time_ackermann,result_ackerman);
+      BenchOutput("TestAckermann",time_ackermann,&result_ackerman);
+     }
 //--- 2. Arrays
-   INT64  result_arrays;
-   UINT64 time_arrays=TestArrays(result_arrays);
-   printf("      Arrays:  %I64u ms, %I64d\n",time_arrays,result_arrays);
-   BenchOutput("TestArrays",time_arrays,&result_arrays);
+   if(test_num<=0 || test_num>16 || test_num==2)
+     {
+      INT64  result_arrays;
+      UINT64 time_arrays=TestArrays(result_arrays);
+      printf("      Arrays:  %I64u ms, %I64d\n",time_arrays,result_arrays);
+      BenchOutput("TestArrays",time_arrays,&result_arrays);
+     }
 //--- 3. Bubble sort
-   int    size=_countof(ExtBubbleArray);
-   UINT64 time_bubble=TestBubbleSort(ExtBubbleArray,0,size-1);
-   INT64  result_bubble=ExtBubbleArray[size-1];
-   printf(" Bubble Sort:  %I64u ms, %I64d\n",time_bubble,result_bubble);
-   BenchOutput("TestBubblesort",time_bubble,&result_bubble);
+   if(test_num<=0 || test_num>16 || test_num==3)
+     {
+      int    size=_countof(ExtBubbleArray);
+      UINT64 time_bubble=TestBubbleSort(ExtBubbleArray,0,size-1);
+      INT64  result_bubble=ExtBubbleArray[size-1];
+      printf(" Bubble Sort:  %I64u ms, %I64d\n",time_bubble,result_bubble);
+      BenchOutput("TestBubblesort",time_bubble,&result_bubble);
+     }
 //--- 4. Call
-   INT64  result_call;
-   UINT64 time_call=TestCall(result_call);
-   printf("        Call:  %I64u ms, %I64d\n",time_call,result_call);
-   BenchOutput("TestCall",time_call,&result_call);
+   if(test_num<=0 || test_num>16 || test_num==4)
+     {
+      INT64  result_call;
+      UINT64 time_call=TestCall(result_call);
+      printf("        Call:  %I64u ms, %I64d\n",time_call,result_call);
+      BenchOutput("TestCall",time_call,&result_call);
+     }
 //--- 5. Fibo
-   INT64  result_fibo;
-   UINT64 time_fibo=TestFibo(result_fibo);
-   printf("        Fibo:  %I64u ms, %I64d\n",time_fibo,result_fibo);
-   BenchOutput("TestFibo",time_fibo,&result_fibo);
+   if(test_num<=0 || test_num>16 || test_num==5)
+     {
+      INT64  result_fibo;
+      UINT64 time_fibo=TestFibo(result_fibo);
+      printf("        Fibo:  %I64u ms, %I64d\n",time_fibo,result_fibo);
+      BenchOutput("TestFibo",time_fibo,&result_fibo);
+     }
 //--- 6. Matrix
-   INT64  result_matrix;
-   UINT64 time_matrix=TestMatrix(result_matrix);
-   printf("      Matrix:  %I64u ms, %I64d\n",time_matrix,result_matrix);
-   BenchOutput("TestMatrix",time_matrix,&result_matrix);
+   if(test_num<=0 || test_num>16 || test_num==6)
+     {
+      INT64  result_matrix;
+      UINT64 time_matrix=TestMatrix(result_matrix);
+      printf("      Matrix:  %I64u ms, %I64d\n",time_matrix,result_matrix);
+      BenchOutput("TestMatrix",time_matrix,&result_matrix);
+     }
 //--- 7. Moments
-   INT64  result_moments;
-   UINT64 time_moments=TestMoments(result_moments);
-   printf("     Moments:  %I64u ms, %I64d\n",time_moments,result_moments);
-   BenchOutput("TestMoments",time_moments,&result_moments);
+   if(test_num<=0 || test_num>16 || test_num==7)
+     {
+      INT64  result_moments;
+      UINT64 time_moments=TestMoments(result_moments);
+      printf("     Moments:  %I64u ms, %I64d\n",time_moments,result_moments);
+      BenchOutput("TestMoments",time_moments,&result_moments);
+     }
 //--- 8. Nested Loops
-   INT64  result_nested_loops;
-   UINT64 time_nested_loops=TestNestedLoop(result_nested_loops);
-   printf("Nested Loops:  %I64u ms, %I64d\n",time_nested_loops,result_nested_loops);
-   BenchOutput("TestNestedLoops",time_nested_loops,&result_nested_loops);
+   if(test_num<=0 || test_num>16 || test_num==8)
+     {
+      INT64  result_nested_loops;
+      UINT64 time_nested_loops=TestNestedLoop(result_nested_loops);
+      printf("Nested Loops:  %I64u ms, %I64d\n",time_nested_loops,result_nested_loops);
+      BenchOutput("TestNestedLoops",time_nested_loops,&result_nested_loops);
+     }
 //--- 9. PI
-   INT64  result_pi;
-   UINT64 time_pi=TestPiDigits(result_pi);
-   printf("   Pi Digits:  %I64u ms, %I64d\n",time_pi,result_pi);
-   BenchOutput("TestPiNumber",time_pi,&result_pi);
+   if(test_num<=0 || test_num>16 || test_num==9)
+     {
+      INT64  result_pi;
+      UINT64 time_pi=TestPiDigits(result_pi);
+      printf("   Pi Digits:  %I64u ms, %I64d\n",time_pi,result_pi);
+      BenchOutput("TestPiDigits",time_pi,&result_pi);
+     }
 //--- 10. Random
-   INT64  result_random;
-   UINT64 time_random=TestRandom(result_random);
-   printf("      Random:  %I64u ms, %I64d\n",time_random,result_random);
-   BenchOutput("TestRandom",time_random,&result_random);
+   if(test_num<=0 || test_num>16 || test_num==10)
+     {
+      INT64  result_random;
+      UINT64 time_random=TestRandom(result_random);
+      printf("      Random:  %I64u ms, %I64d\n",time_random,result_random);
+      BenchOutput("TestRandom",time_random,&result_random);
+     }
 //--- 11. Sieve
-   INT64  result_sieve;
-   UINT64 time_sieve=TestSieve(result_sieve);
-   printf("       Sieve:  %I64u ms, %I64d\n",time_sieve,result_sieve);
-   BenchOutput("TestSieve",time_sieve,&result_sieve);
+   if(test_num<=0 || test_num>16 || test_num==11)
+     {
+      INT64  result_sieve;
+      UINT64 time_sieve=TestSieve(result_sieve);
+      printf("       Sieve:  %I64u ms, %I64d\n",time_sieve,result_sieve);
+      BenchOutput("TestSieve",time_sieve,&result_sieve);
+     }
 //--- 12. Math
-   INT64  result_int=0;
-   double result_double=0.0;
-   UINT64 time_math=TestMath(result_int,result_double);
-   printf(" Simple Math:  %I64u ms, %I64d %.0f\n",time_math,result_int,result_double);
-   BenchOutput("TestMath",time_math,&result_int);
+   if(test_num<=0 || test_num>16 || test_num==12)
+     {
+      INT64  result_int=0;
+      double result_double=0.0;
+      UINT64 time_math=TestMath(result_int,result_double);
+      printf(" Simple Math:  %I64u ms, %I64d %.0f\n",time_math,result_int,result_double);
+      BenchOutput("TestMath",time_math,&result_int);
+     }
 //--- 13. String
-   std::string str;
-   UINT64 time_string=TestString(str);
-   printf("      String:  %I64u ms, %d\n",time_string,(int)str.length());
-   BenchOutput("TestString",time_string,NULL);
+   if(test_num<=0 || test_num>16 || test_num==13)
+     {
+      std::string str;
+      UINT64 time_string=TestString(str);
+      printf("      String:  %I64u ms, %d\n",time_string,(int)str.length());
+      BenchOutput("TestString",time_string,NULL);
+     }
 //--- 14. Str Prep
-   INT64  result_str_prep;
-   UINT64 time_str_prep=TestStrPrep(result_str_prep);
-   printf("    Str Prep:  %I64u ms, %I64d\n",time_str_prep,result_str_prep);
-   BenchOutput("TestStringPrep",time_str_prep,&result_str_prep);
+   if(test_num<=0 || test_num>16 || test_num==14)
+     {
+      INT64  result_str_prep;
+      UINT64 time_str_prep=TestStrPrep(result_str_prep);
+      printf("    Str Prep:  %I64u ms, %I64d\n",time_str_prep,result_str_prep);
+      BenchOutput("TestStringPrep",time_str_prep,&result_str_prep);
+     }
 //--- 15. Str Rev
-   INT64  result_str_rev;
-   UINT64 time_str_rev=TestStrRev(result_str_rev);
-   printf("     Str Rev:  %I64u ms, %I64d\n",time_str_rev,result_str_rev);
-   BenchOutput("TestStringRev",time_str_rev,NULL);
+   if(test_num<=0 || test_num>16 || test_num==15)
+     {
+      INT64  result_str_rev;
+      UINT64 time_str_rev=TestStrRev(result_str_rev);
+      printf("     Str Rev:  %I64u ms, %I64d\n",time_str_rev,result_str_rev);
+      BenchOutput("TestStringRev",time_str_rev,NULL);
+     }
 //--- 16. Str Sum
-   INT64  result_sum=0;
-   UINT64 time_str_sum=TestStrSum(result_sum);
-   printf("     Str Sum:  %I64u ms, %I64d\n",time_str_sum,result_sum);
-   BenchOutput("TestStringSum",time_str_sum,&result_sum);
+   if(test_num<=0 || test_num>16 || test_num==16)
+     {
+      INT64  result_sum=0;
+      UINT64 time_str_sum=TestStrSum(result_sum);
+      printf("     Str Sum:  %I64u ms, %I64d\n",time_str_sum,result_sum);
+      BenchOutput("TestStringSum",time_str_sum,&result_sum);
+     }
 //---
    return(0);
   }

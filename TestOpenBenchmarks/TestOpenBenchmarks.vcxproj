@@ -85,13 +85,16 @@ copy /B "$(TargetPath)" "$(ProjectDir)..\TestResults"</Command>
     <ClCompile Include="TestBubblesort.cpp" />
     <ClCompile Include="TestCall.cpp" />
     <ClCompile Include="TestFibo.cpp" />
+    <ClCompile Include="TestMandelbrot.cpp" />
     <ClCompile Include="TestMath.cpp" />
     <ClCompile Include="TestMatrix.cpp" />
     <ClCompile Include="TestMoments.cpp" />
     <ClCompile Include="TestNestedLoops.cpp" />
     <ClCompile Include="TestOpenBenchmarks.cpp" />
+    <ClCompile Include="TestPathTracer.cpp" />
     <ClCompile Include="TestPiDigits.cpp" />
     <ClCompile Include="TestRandom.cpp" />
+    <ClCompile Include="TestRayTracer.cpp" />
     <ClCompile Include="TestSieve.cpp" />
     <ClCompile Include="TestString.cpp" />
     <ClCompile Include="TestStrPrep.cpp" />

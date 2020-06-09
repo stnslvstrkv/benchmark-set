@@ -3,12 +3,9 @@
 //|                   Copyright 2000-2020, MetaQuotes Software Corp. |
 //|                                        http://www.metaquotes.net |
 //+------------------------------------------------------------------+
-#define MAX_SIZE_BUBBLE_SORT 25000
-extern int ExtBubbleArray[MAX_SIZE_BUBBLE_SORT];
-
 UINT64 TestAckermann(INT64 &result);
 UINT64 TestArrays(INT64 &result);
-UINT64 TestBubbleSort(int array[],int left,int right);
+UINT64 TestBubbleSort(INT64 &result);
 UINT64 TestCall(INT64 &result);
 UINT64 TestFibo(INT64 &result);
 UINT64 TestMandelbrot(INT64 &result);
@@ -21,7 +18,7 @@ UINT64 TestPiDigits(INT64 &result);
 UINT64 TestRandom(INT64 &result);
 UINT64 TestRayTracer(INT64 &result);
 UINT64 TestSieve(INT64 &result);
-UINT64 TestString(std::string &str);
+UINT64 TestString(INT64 &result);
 UINT64 TestStrPrep(INT64 &result);
 UINT64 TestStrRev(INT64 &result);
 UINT64 TestStrSum(INT64 &result);

@@ -10,10 +10,8 @@
 //+------------------------------------------------------------------+
 //| 12. String                                                       |
 //+------------------------------------------------------------------+
-UINT64 TestString(std::string &str)
+void TestString(std::string &str)
   {
-   UINT64 ticks=GetTickCount64();
-//--- тест
    for(int i=0; i<MAX_SIZE_STRING; i++)
      {
       str=">>>>>>>>>>>>>>>>>...>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
@@ -22,6 +20,17 @@ UINT64 TestString(std::string &str)
       str+="apple";
       str+="\n";
      }
+  }
+//+------------------------------------------------------------------+
+//| 12. String                                                       |
+//+------------------------------------------------------------------+
+UINT64 TestString(INT64 &result)
+  {
+   std::string str;
+   UINT64 ticks=GetTickCount64();
+//--- тест
+   TestString(str);
+   result=(INT64)str.length();
 //---
    return(GetTickCount64()-ticks);
   }

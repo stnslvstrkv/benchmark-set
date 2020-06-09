@@ -20,7 +20,6 @@ INT64 PiCalculate(const int digits)
    int   d=0,e,b,g,r;
    int   c=(digits/4+1)*14;
    int   f=10000;
-   INT64 result=0;
 //---
    for(int i=0; i<c; i++)
       PiA[i]=20000000;
@@ -48,11 +47,10 @@ INT64 PiCalculate(const int digits)
                PiStr+="000";
            }
         }
-      result+=r;
       PiStr+=std::to_string(r);
      }
 //---
-   return(result);
+   return(PiStr.length());
   }
 //+------------------------------------------------------------------+
 //|                                                                  |

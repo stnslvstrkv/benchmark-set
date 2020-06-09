@@ -45,9 +45,9 @@ UINT64 TestStrPrep(INT64 &result)
   {
    UINT64      ticks=GetTickCount64();
    std::string str="Print(\"Nice red apple \",res,\" ms.\");";
-//--- тест
+//---
    result=0;
-   for(int i=0;i<MAX_SIZE_STR_PREP;i++)
+   for(int i=0; i<MAX_SIZE_STR_PREP; i++)
       result+=StrPrep(str);
 //---
    return(GetTickCount64()-ticks);

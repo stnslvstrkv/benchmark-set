@@ -31,9 +31,9 @@ int TestStrRevX(void)
 UINT64 TestStrRev(INT64 &result)
   {
    UINT64 ticks=GetTickCount64();
-//--- тест
+//---
    result=0;
-   for(int i=0;i<MAX_SIZE_STR_REV;i++)
+   for(int i=0; i<MAX_SIZE_STR_REV; i++)
       result+=TestStrRevX();
 //---
    return(GetTickCount64()-ticks);

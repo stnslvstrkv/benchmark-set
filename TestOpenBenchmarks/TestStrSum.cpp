@@ -6,7 +6,7 @@
 #include <windows.h>
 #include <string>
 
-#define MAX_SIZE_STR_SUM   1000000
+#define MAX_SIZE_STR_SUM  50000000
 //+------------------------------------------------------------------+
 //| 15. Str Sum                                                      |
 //+------------------------------------------------------------------+
@@ -41,12 +41,10 @@ int TestStrSumX(int num)
 UINT64 TestStrSum(INT64 &result)
   {
    UINT64 ticks=GetTickCount64();
-   INT64  sum=0;
-//--- тест
+//---
+   result=0;
    for(int i=0; i<MAX_SIZE_STR_SUM; i++)
-      sum+=TestStrSumX(i);
-
-   result=sum;
+      result+=TestStrSumX(i);
 //---
    return(GetTickCount64()-ticks);
   }

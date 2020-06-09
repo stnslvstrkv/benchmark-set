@@ -6,20 +6,19 @@
 #include <windows.h>
 #include <string>
 
-#define MAX_SIZE_STRING   20000000
+#define MAX_SIZE_STRING   50000000
 //+------------------------------------------------------------------+
 //| 12. String                                                       |
 //+------------------------------------------------------------------+
-void TestString(std::string &str)
+int TestString(std::string &str)
   {
-   for(int i=0; i<MAX_SIZE_STRING; i++)
-     {
-      str=">>>>>>>>>>>>>>>>>...>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-      str+="Nice ";
-      str+="red ";
-      str+="apple";
-      str+="\n";
-     }
+   str+=">>>>>>>>>>>>>>>>>...>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+   str+="Nice ";
+   str+="red ";
+   str+="apple";
+   str+="\n";
+//---
+   return(str.length());
   }
 //+------------------------------------------------------------------+
 //| 12. String                                                       |
@@ -27,10 +26,16 @@ void TestString(std::string &str)
 UINT64 TestString(INT64 &result)
   {
    std::string str;
-   UINT64 ticks=GetTickCount64();
+   char        init_str[2]="0";
+   UINT64      ticks=GetTickCount64();
 //--- тест
-   TestString(str);
-   result=(INT64)str.length();
+   result=0;
+   for(int i=0; i<MAX_SIZE_STRING; i++)
+     {
+      init_str[0]='0'+i%10;
+      str=init_str;
+      result+=TestString(str);
+     }
 //---
    return(GetTickCount64()-ticks);
   }

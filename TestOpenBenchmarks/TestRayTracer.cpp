@@ -9,11 +9,11 @@
 
 int ExtLevels=6;            // levels count
 int ExtChilds=9;            // childs count
-int ExtResolution=2048;     // image dimension in pixels
 
-#define M_PI   3.14159265358979323846   // pi as in <correct_math_defines.h>
-#define ss     2
-#define ss_sqr 4
+#define RESOLUTION 2048
+#define M_PI       3.14159265358979323846   // pi as in <correct_math_defines.h>
+#define ss         2
+#define ss_sqr     4
 
 //--- our rotated grid
 const double grid[ss_sqr][2]=
@@ -449,16 +449,16 @@ UINT64 TestRayTracer(INT64 &result)
    ExtLight.Set(-0.5,-0.65,0.9);
    ExtLight.Normal();
 
-   int image_size=ExtResolution*ExtResolution;
+   int image_size=RESOLUTION*RESOLUTION;
    uint_array=new UINT[image_size];
-      Trace(ExtResolution,ExtResolution,uint_array);
+      Trace(RESOLUTION,RESOLUTION,uint_array);
 //---
    UINT64 elapsed=::GetTickCount64()-t0;
 //--- write bmp
-   write_bitmap32b("raytrace.bmp",uint_array,ExtResolution,ExtResolution);
+   write_bitmap32b("raytrace.bmp",uint_array,RESOLUTION,RESOLUTION);
    delete[] uint_array;
 //---
-   result=image_size;
+   result=image_size*sizeof(UINT);
    return(elapsed);
   }
 //+------------------------------------------------------------------+

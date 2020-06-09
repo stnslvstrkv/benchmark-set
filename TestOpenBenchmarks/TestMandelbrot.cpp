@@ -90,7 +90,7 @@ UINT64 TestMandelbrot(INT64 &result)
    write_bitmap32b("mandelbrot.bmp",uint_array,RESOLUTION,RESOLUTION);
    delete[] uint_array;
 //---
-   result=image_size;
+   result=image_size*sizeof(UINT);
    return(elapsed);
   }
 //+------------------------------------------------------------------+

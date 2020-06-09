@@ -304,7 +304,7 @@ UINT64 TestPathTracer(INT64 &result)
    write_bitmap32b("pathtrace.bmp",buffer_save,w,h);
    delete[] buffer_save;
 //---
-   result=w*h;
+   result=w*h*sizeof(UINT);
    return(elapsed);
   }
 //+------------------------------------------------------------------+
